@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date
 from django.contrib.auth.hashers import make_password
-# Create your models here.
+
 class Palomitas(models.Model):
     id_palomitas = models.AutoField(primary_key=True)
     precio = models.FloatField()
@@ -22,9 +22,11 @@ class Palomitera(models.Model):
 
 class Empleado(models.Model):
     id_empleado = models.AutoField(primary_key=True)
-    no_empleado = models.IntegerField(default=0)
     usuario = models.CharField(max_length=30)
     contrasena = models.CharField(max_length=128)
+    nombres = models.CharField(max_length=128)
+    apellidos = models.CharField(max_length=128)
+    rol = models.CharField(max_length=128)
     foto = models.CharField(max_length=200)
 
     def save(self, *args, **kwargs):

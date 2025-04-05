@@ -11,5 +11,6 @@ router.register(r'motivos',views.MotivoViewSet)
 router.register(r'pedidos',views.PedidoViewSet)
 
 urlpatterns=[
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('api/v1/empleados/validar_empleado/', views.EmpleadoViewSet.as_view({'post': 'validar_empleado'}), name='validar_empleado'),
 ]
