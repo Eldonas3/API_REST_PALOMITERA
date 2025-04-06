@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 from django.contrib.auth.hashers import make_password
+import random
 
 class Palomitas(models.Model):
     id_palomitas = models.AutoField(primary_key=True)
@@ -12,7 +13,6 @@ class Palomitas(models.Model):
 
 class Palomitera(models.Model):
     id_palomitera = models.AutoField(primary_key=True)
-    no_palomitera = models.IntegerField(default=0)
     ubicacion = models.CharField(max_length=200)
     cantidad_palomitas = models.FloatField()
     cantidad_granos = models.FloatField()
@@ -57,19 +57,32 @@ class Motivo(models.Model):
     def __str__(self):
         return f"Motivo: {self.motivo}"
 
+def generar_codigo_verificacion():
+    while True:
+        codigo = random.randint(0, 99999999) 
+        if not Pedido.objects.filter(codigo_verificacion=codigo).exists():
+            return codigo
+        
+
 class Pedido(models.Model):
     id_pedido = models.AutoField(primary_key=True)
-    no_pedido = models.IntegerField(default=0)
     palomitas = models.ForeignKey(Palomitas, on_delete=models.CASCADE)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    codigo_verificacion = models.IntegerField(unique=True)
-    palomitera = models.ForeignKey(Palomitera, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True, blank=True)
+    codigo_verificacion = models.IntegerField(unique=True, default=generar_codigo_verificacion)
+    palomitera = models.ForeignKey(Palomitera, on_delete=models.CASCADE, default=1)
     estatus = models.BooleanField(default=False)
-    empleado = models.ForeignKey(Empleado,on_delete=models.CASCADE)
+    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
     fecha = models.DateField(default=date.today)
-    monto_pagado = models.FloatField(default=0)
+    monto_pagado = models.FloatField(blank=True, null=True)
     cambio = models.BooleanField(default=False)
-    motivo = models.ForeignKey(Motivo, on_delete=models.CASCADE)
+    motivo = models.ForeignKey(Motivo, on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.palomitas:  
+            self.monto_pagado = self.palomitas.precio 
+        super().save(*args, **kwargs) 
 
     def __str__(self):
         return f"Pedido {self.id_pedido} - Código {self.codigo_verificacion} - Fecha {self.fecha} - Monto ${self.monto_pagado}"
+
+    
