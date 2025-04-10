@@ -71,7 +71,7 @@ class Pedido(models.Model):
     codigo_verificacion = models.IntegerField(unique=True, default=generar_codigo_verificacion)
     palomitera = models.ForeignKey(Palomitera, on_delete=models.CASCADE, default=1)
     estatus = models.BooleanField(default=False)
-    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE, null =True)
     fecha = models.DateField(default=date.today)
     monto_pagado = models.FloatField(blank=True, null=True)
     cambio = models.BooleanField(default=False)
