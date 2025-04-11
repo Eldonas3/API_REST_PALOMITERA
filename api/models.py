@@ -6,6 +6,7 @@ class Palomitas(models.Model):
     id_palomitas = models.AutoField(primary_key=True)
     precio = models.FloatField()
     tamano = models.CharField(max_length=30)
+    tiempo = models.IntegerField()
 
     def __str__(self):
         return f"{self.tamano} - ${self.precio}"
@@ -16,6 +17,7 @@ class Palomitera(models.Model):
     ubicacion = models.CharField(max_length=200)
     cantidad_palomitas = models.FloatField()
     cantidad_granos = models.FloatField()
+    estatus = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Palomitera {self.no_palomitera} en {self.ubicacion}"
