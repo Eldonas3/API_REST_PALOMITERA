@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import *
-from .serializer import *
+from .models import Palomitas,Palomitera,Empleado,Cliente,Motivo,Estado,Pedido
+from .serializer import PalomitasSerializer,PalomiteraSerializer,EmpleadoSerializer,ClienteSerializer,EstadoSerializer,MotivoSerializer,PedidoSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
@@ -22,6 +22,10 @@ class EmpleadoViewSet(viewsets.ModelViewSet):
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
+
+class EstadoViewSet(viewsets.ModelViewSet):
+    queryset = Estado.objects.all()
+    serializer_class = EstadoSerializer
 
 class MotivoViewSet(viewsets.ModelViewSet):
     queryset = Motivo.objects.all()
@@ -57,7 +61,7 @@ class PedidoViewSet(viewsets.ModelViewSet):
                 {"message": "Error inesperado al crear el pedido", "errors": str(e)},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        
+
     def update(self, request, *args, **kwargs):
         try:
             response = super().update(request, *args, **kwargs)

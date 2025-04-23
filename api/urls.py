@@ -9,6 +9,7 @@ router.register(r'empleados',views.EmpleadoViewSet)
 router.register(r'clientes',views.ClienteViewSet)
 router.register(r'motivos',views.MotivoViewSet)
 router.register(r'pedidos',views.PedidoViewSet)
+router.register(r'estados',views.EstadoViewSet)
 
 urlpatterns=[
     path('',include(router.urls))

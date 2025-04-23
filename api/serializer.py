@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import *
+from .models import Palomitas,Palomitera,Empleado,Cliente,Motivo,Pedido,Estado
 
 class PalomitasSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,4 +29,9 @@ class MotivoSerializer(serializers.ModelSerializer):
 class PedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pedido
+        fields = '__all__'
+
+class EstadoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Estado
         fields = '__all__'

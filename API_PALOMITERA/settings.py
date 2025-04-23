@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=(-cer^ipk_bc%=!v4lbmlt@rkjm!6=kvcg^$a5g_dt2dfjvu8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aimeetyou.pythonanywhere.com']
 
 
 # Application definition
@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'API_PALOMITERA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST':'localhost',
+        'HOST':'AImeetyou.mysql.pythonanywhere-services.com',
         'PORT':'3306',
-        'USER':'root',
-        'PASSWORD':'',
-        'NAME': 'palomiteradb',
+        'USER':'AImeetyou',
+        'PASSWORD':'JODERNOLOSE!',
+        'NAME': 'AImeetyou$palomitera',
         'OPTIONS':{
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
