@@ -3,10 +3,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=(-cer^ipk_bc%=!v4lbmlt@rkjm!6=kvcg^$a5g_dt2dfjvu8'
 
@@ -27,7 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
-    'corsheaders'
+    'corsheaders',
+    'cola_pedidos'
 ]
 
 MIDDLEWARE = [
@@ -43,8 +40,8 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",  # o tu dominio frontend
-    "http://localhost:3000",   # otro dominio si lo usas
+    "http://127.0.0.1:5500",
+    "http://localhost:3000",
 ]
 
 ROOT_URLCONF = 'API_PALOMITERA.urls'
@@ -74,20 +71,16 @@ WSGI_APPLICATION = 'API_PALOMITERA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST':'',
-        'PORT':'',
-        'USER':'',
-        'PASSWORD':'',
-        'NAME': '',
+        'HOST':'AImeetyou.mysql.pythonanywhere-services.com',
+        'PORT':'3306',
+        'USER':'AImeetyou',
+        'PASSWORD':'JODERNOLOSE!',
+        'NAME': 'AImeetyou$palomitera',
         'OPTIONS':{
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -104,10 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -116,14 +105,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-
 STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
