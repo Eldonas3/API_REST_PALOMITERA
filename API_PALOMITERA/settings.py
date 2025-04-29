@@ -71,11 +71,11 @@ WSGI_APPLICATION = 'API_PALOMITERA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST':'',
-        'PORT':'',
-        'USER':'',
-        'PASSWORD':'!',
-        'NAME': '',
+        'HOST':'AImeetyou.mysql.pythonanywhere-services.com',
+        'PORT':'3306',
+        'USER':'AImeetyou',
+        'PASSWORD':'JODERNOLOSE!',
+        'NAME': 'AImeetyou$palomitera',
         'OPTIONS':{
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
